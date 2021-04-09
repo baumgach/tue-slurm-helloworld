@@ -35,5 +35,5 @@ From: nvidia/cuda:11.2.2-cudnn8-runtime-ubuntu20.04
 %files 
 
     # Copy code from home directory to singularity root
-    /home/baumgach/devel/slurm_playground /opt/code
+    multiply.py /opt/code
 
