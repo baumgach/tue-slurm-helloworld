@@ -133,7 +133,7 @@ Move the slurm instruction file and the container over to slurm like this
 scp deploy.sh deeplearning.sif slurm:/home/baumgartner/<your-slurm-username>
 ````
 
-The `deploy.sh` file contains instructions for your slurm job. There are a bunch of options for which GPUs to use etc. and which code to execute. In this case, `multiply.py`. 
+The `deploy.sh` file contains instructions for your slurm job. Those are a bunch of options for which GPUs to use etc, and which code to execute. In this case, `multiply.py`. 
 
 Then connect to the remote slurm host
 ````
