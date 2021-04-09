@@ -30,7 +30,7 @@ scp <localfile> slurm:<remote-dir>
 ````
 
 ## (Optional) Build singularity
-Note: This step is only required if you are planing on building singularity containers on your local machine. The remote slurm host already has singularity installed. The rest of the tutorial will implicitly assume you have done this step. If you haven't perform the following steps on the remote slurm host. 
+Note: This step is only required if you are planing on building singularity containers on your local machine. The remote slurm host already has singularity installed. The rest of the tutorial will implicitly assume you have done this step. If you have not, then perform the following steps on the remote slurm host. 
 
 Follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html)
 
