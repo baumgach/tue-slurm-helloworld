@@ -74,8 +74,10 @@ Explanations:
 You can now enter a shell in your container using the following command and have a look around. 
 
 ````
-singularity shell deeplearning.sif
+singularity shell --bind /mnt/qb/baumgartner deeplearning.sif
 ````
+
+The bind option is not necessary to enter the container. It will mount the `baumgartner` folder, so you have access to it from inside the container also. This is important for the `multiply.py` script to execute successfully.  
 
 You are now running an encapsulated operating system as specified in `deeplearning.def`. 
 Try opening an `ipython` terminal. 
