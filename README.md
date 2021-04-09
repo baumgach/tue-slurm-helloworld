@@ -43,7 +43,7 @@ Note: This step will facilitate moving data around. Again this is not required i
 sudo sshfs -o allow_other,IdentityFile=/home/$USER/.ssh/id_rsa <your-slurm-username>@134.2.168.52:/mnt/qb/baumgartner /mnt/qb/baumgartner
 ````
 
-The above links the remote slurm location `/mnt/qb/baumgartner` to the same path on your local machine. Note this assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. 
+The above links the remote slurm location `/mnt/qb/baumgartner` to the same path on your local machine. This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. 
 
 ## Download code and build singularity container
 
