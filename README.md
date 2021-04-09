@@ -45,7 +45,7 @@ The above links the remote slurm location `/mnt/qb/baumgartner` to the same path
 
 ## Download code and build singularity container
 
-### Getting the example code and building
+### Getting the example code and building the container
 
 Get code using the following line:
 
