@@ -2,7 +2,7 @@
 
 This example contains some Python PyTorch code to multiply two matrices, and the necessary files and instrutions to build a singularity container containing this code and deploying it on the ML Cloud slurm host. 
 
-The idea is to get a first "Hello World" type example working in order to understand how all these components fit together. This is note intented as a fully functional tool for getting productive. Consider it a starting point. 
+The idea is to get a first "Hello World" type example working in order to understand how all these components fit together. This is not intented as a fully functional tool for getting productive. Consider it a starting point. 
 
 **Note about the "(optional)" stuff:** The steps below only work smoothly on your local machine if you do the optional steps also. However, most of them can be ommitted if you work directly on the remote slurm host. 
 
