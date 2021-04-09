@@ -4,6 +4,8 @@ This example contains some Python PyTorch code to multiply two matrices, and the
 
 The idea is to get a first "Hello World" type example working in order to understand how all these components fit together. 
 
+This is note intented as a fully functional tool for getting productive. Consider it a starting point. 
+
 ## Get access to Slurm
 
 Apply for access to ML cloud [here](https://uni-tuebingen.de/de/199396). 
