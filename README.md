@@ -102,7 +102,8 @@ python3 multiply.py
 
 Note that the code assumes that the following file exists on Slurm: `/mnt/qb/baumgartner/storagetest.txt`. I have put it there, so if nothing has changed it should be there. It contains a single integer specifying the size of the matrices to be multiplied in `multiply.py`. The idea behind this is to simulate dependence on external data. In a real-world example, this could for example be a medical dataset. 
 
-**An important thing to note:** When you change your code after building the container, it will be changed your current working directory but not under `/opt/code`. 
+**An important thing to note:** When you change your code after building the container, it will be changed in 
+your current working directory but not under `/opt/code`. 
 
 You can exit the container using `exit` or `Ctrl+d`. 
 
