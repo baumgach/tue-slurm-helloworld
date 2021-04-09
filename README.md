@@ -90,7 +90,11 @@ The following lines in the `deeplearning.sif` file
 %files
     multiply.py /opt/code
 ````
-copies your code to `/opt/code` in the container. We copied it there so it would be baked into the container, so when you move the container elsewhere the code is still around. However, it is also available in your current working directory. So technically it is there twice. But when you move your container to another location, the latter code will no longer be there. You navigate to either copy of the code and execute it using 
+copies your code to `/opt/code` in the container. We copied it there so it would be baked into the container, so when you move the container elsewhere the code is still around. 
+
+The code is also available in your current working directory. So technically it is there twice. However, when you later move your container to another location (e.g. to the slurm host), the working directory with the code (which only mounted) will no longer be the same. The copied code in `/opt/code`, on the other hand, stays with the container.   
+
+You can navigate to either copy of the code and execute it using 
 
 ````
 python3 multiply.py
