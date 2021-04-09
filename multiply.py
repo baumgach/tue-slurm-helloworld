@@ -41,7 +41,7 @@ if __name__ == "__main__":
         description="Tescript for Singularity and SLURM on GPU. It times the multiplication of two matrices, repeated `timer_repetition` times."
     )
     parser.add_argument(
-        "--timer_repetitions", dest="timer_repetitions", action="store", default=100000, type=int, help="How many times to repeat the multiplication.",
+        "--timer_repetitions", dest="timer_repetitions", action="store", default=1000, type=int, help="How many times to repeat the multiplication.",
     )
     parser.add_argument('--use-gpu', dest='use_gpu', action='store_true')
     parser.add_argument('--no-gpu', dest='use_gpu', action='store_false')
