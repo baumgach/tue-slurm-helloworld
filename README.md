@@ -67,7 +67,7 @@ sudo singularity build deeplearning.sif deeplearning.def
 
 Explanations:
  - `deeplearning.def` contains instructions on how to build the container. It's a text file, have a look at it if you want. 
- - Importantly, this files contains the specification of the "operating system", a Ubuntu 20.04 with cuda support in this case, and instructions to install Python3 with all required packages for this example. 
+ - Importantly, this file contains the specification of the "operating system", a Ubuntu 20.04 with cuda support in this case, and instructions to install Python3 with all required packages for this example. 
 
 ### Entering the new container in a shell
 
