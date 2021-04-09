@@ -1,5 +1,9 @@
 # Instructions
 
+This example contains some Python PyTorch code to multiply two matrices, and the necessary files and instrutions to build a singularity container containing this code and deploying it on the ML Cloud slurm host. 
+
+The idea is to get a first "Hello World" type example working in order to understand how all these components fit together. 
+
 ## Get access to Slurm
 
 Apply for access to ML cloud [here](https://uni-tuebingen.de/de/199396). 
@@ -87,7 +91,7 @@ Copies your code to `/opt/code` in the container. We copied it there so it would
 python3 multiply.py
 ````
 
-Note that the code assumes that the following file exists on Slurm: `/mnt/qb/baumgartner/storagetest.txt`. I have put it there, so if nothing has changed it should be there. The idea behind this is to simulate dependence on external data. In a real-world example, this could for example be a medical dataset. 
+Note that the code assumes that the following file exists on Slurm: `/mnt/qb/baumgartner/storagetest.txt`. I have put it there, so if nothing has changed it should be there. It contains a single integer specifying the size of the matrices to be multiplied in `multiply.py`. The idea behind this is to simulate dependence on external data. In a real-world example, this could for example be a medical dataset. 
 
 **An important thing to note:** When you change your code after building the container, it will be changed your current working directory but not under `/opt/code`. 
 
@@ -141,4 +145,5 @@ More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud
  - [Singularity tutorial with GPU use and PyTorch](https://github.com/bdusell/singularity-tutorial)
  - [A python tool for deploying slurm jobs](https://github.com/sinzlab/tue-slurm/) with singularity containers developed by the Sinz lab
  - [A list of all available Docker images](https://hub.docker.com/r/nvidia/cuda/) with Cuda support to build the container from (if you are not happy with Ubunut 20.04)
+ - [ML Cloud Slurm Wiki](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
  - [Singularity user guide](https://sylabs.io/guides/3.7/user-guide/)
