@@ -5,7 +5,7 @@ import argparse
 def time_multiplication(
     timer_repetitions,
     use_gpu=True,
-    data_path="/mnt/qb/baumgartner/cbaumgartner/processed_data/slurm_test.txt",
+    data_path="/mnt/qb/baumgartner/storagetest.txt",
 ):
 
     # Simulate external data access by reading the matrix size from external file
