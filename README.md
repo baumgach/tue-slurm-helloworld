@@ -85,7 +85,7 @@ You are now running an encapsulated operating system as specified in `deeplearni
 Try opening an `ipython` terminal. 
 Note that your home directory and current working directory automatically get mounted inside the container. This is not true for all paths, however. 
 
-The following lines in the `deeplearning.sif` file 
+The following lines in the `deeplearning.def` file 
 ````
 %files
     multiply.py /opt/code
