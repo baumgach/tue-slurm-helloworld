@@ -68,7 +68,7 @@ Note: The folder only stays mounted as long as your internet connection doesn't 
 
 ### Getting the example code and building the container
 
-Get code using the following line:
+Download the code in your current working directory using the following line:
 
 ````
 git clone https://github.com/baumgach/tue-slurm-helloworld.git
