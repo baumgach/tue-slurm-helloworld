@@ -39,11 +39,28 @@ Follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_
 ## (Optional) Locally mount shared work directory 
 Note: This step will facilitate moving data around. Again this is not required if you work completely remotely on the slurm host. 
 
+In this step, we will mount the remote shared folder `/mnt/qb/baumgartner` to the same location on your local system. It could also be a different location on your local system, but if we keep the path exactly the same, we do not need to change the paths in the code each time. 
+
+In case you do not have `sshfs` installed, you need to do so using
+````
+sudo apt-get install sshfs
+````
+This is a program that allows us to mount a remote folder on our local machine using the `ssh` protocol. 
+
+Next, on your local machine create the mount point where you want to mount the remote folder. In our case:
+````
+sudo mkdir -p /mnt/qb/baumgartner
+````
+The `-p` is required because we are creating a whole hierarchy, not just a single folder. `sudo` is required because we are creating the folders in the root directory `/`, where the user does not have write access.
+
+Next we mount the remote folder using the following command:
+
 ````
 sudo sshfs -o allow_other,IdentityFile=/home/$USER/.ssh/id_rsa <your-slurm-username>@134.2.168.52:/mnt/qb/baumgartner /mnt/qb/baumgartner
 ````
+This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. 
 
-The above links the remote slurm location `/mnt/qb/baumgartner` to the same path on your local machine. This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. 
+Note: The folder only stays mounted as long as your internet connection doesn't drop. So, if you for instance reboot your machine, you need to re-execute the `sshfs` command. 
 
 ## Download code and build singularity container
 
