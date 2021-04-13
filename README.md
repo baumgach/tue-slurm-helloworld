@@ -159,12 +159,25 @@ Then connect to the remote slurm host
 ssh slurm
 ````
 
-and run the following command 
+Among other things `deploy.sh` contains the following two lines
+
+````
+#SBATCH --output=logs/hostname_%j.out  # File to which STDOUT will be written
+#SBATCH --error=logs/hostname_%j.err   # File to which STDERR will be written
+````
+specifying where the log and error files for each job will be written to. You can see, that this script writes them to a `logs` directory relative to your working directory, i.e. the folder where you execute your container command. Unfortunately, Slurm will not create this folder automatically, so we need to do it manually first using 
+````
+mkdir logs
+````
+
+Then submit your slurm job using the following command 
 ````
 sbatch deploy.sh
 ````
 
-This will run the job on slurm as specified in `deploy.sh`. Have a look at the outputs written to `~/logs/`. 
+This will run the job on slurm as specified in `deploy.sh`. Note by the way, that the leading `#SBATCH` do not mean that those lines are commented out. This is just slurm syntax. 
+
+Have a look at the outputs written to `~/logs/`. 
 Of course this is a very basic example, and you should later taylor `deploy.sh` to your needs. 
 
 More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
