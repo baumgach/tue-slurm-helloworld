@@ -17,7 +17,7 @@ Once Slurm access is granted as well switch to SSH-key based authentication as d
 ### (Optional) Create a SSH config 
 Note: This will prevent you from going crazy by having to type the IP address each time. I will assume in the remainder of the document that you have this alias set. 
 
-Create a file `$HOME/.ssh/config` with the following content:
+On your local machine, create a file `$HOME/.ssh/config` with the following content:
 
 ````
 Host slurm
@@ -34,12 +34,14 @@ scp <localfile> slurm:<remote-dir>
 ## (Optional) Build singularity
 Note: This step is only required if you are planing on building singularity containers on your local machine. The remote slurm host already has singularity installed. The rest of the tutorial will implicitly assume you have done this step. If you have not, then perform the following steps on the remote slurm host. 
 
-Follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html)
+Follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html) on your local machine. 
 
 ## (Optional) Locally mount shared work directory 
 Note: This step will facilitate moving data around. Again this is not required if you work completely remotely on the slurm host. 
 
 In this step, we will mount the remote shared folder `/mnt/qb/baumgartner` to the same location on your local system. It could also be a different location on your local system, but if we keep the path exactly the same, we do not need to change the paths in the code each time. 
+
+All the following steps need to be executed on your local machine. 
 
 In case you do not have `sshfs` installed, you need to do so using
 ````
