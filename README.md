@@ -60,9 +60,14 @@ Next we mount the remote folder using the following command:
 ````
 sudo sshfs -o allow_other,IdentityFile=/home/$USER/.ssh/id_rsa <your-slurm-username>@134.2.168.52:/mnt/qb/baumgartner /mnt/qb/baumgartner
 ````
-This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. 
+This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. You might have to map your local username's user_id and group_id to the mountpoint by adding the options `` -o uid=`id -u username` -o gid=`id -g username` ``. This is not necessarily the case, but may help if you don't have your remote user's privileges.
 
-Note: The folder only stays mounted as long as your internet connection doesn't drop. So, if you for instance reboot your machine, you need to re-execute the `sshfs` command. 
+
+Note: The folder only stays mounted as long as your internet connection doesn't drop. So, if you for instance reboot your machine, you need to re-execute the `sshfs` command. To automatically mount the folder upon rebooting, add the following line to the file `/etc/fstab` (you need to use root access for this).
+
+````
+<your-slurm-username>@134.2.168.52:/mnt/qb/baumgartner /mnt/qb/baumgartner fuse.sshfs allow_other,IdentityFile=/home/$USER/.ssh/id_rsa
+````
 
 ## Download code and build singularity container
 
