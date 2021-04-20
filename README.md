@@ -6,6 +6,10 @@ The idea is to get a first "Hello World" type example working in order to unders
 
 **Note about the "(optional)" stuff:** The steps below only work smoothly on your local machine if you do the optional steps also. However, most of them can be ommitted if you work directly on the remote slurm host. 
 
+## Prerequisites 
+
+This examples assumes that you are using [Ubuntu Linux](https://ubuntu.com/). Generally speaking, all of the below stuff is also possible with other Linux distirbutions, Macs and Windows (using [Putty](https://www.putty.org/)). The instructions below may partially work using those other operating systems, but it is likely that some commands or steps will require changes. 
+
 ## Get access to Slurm
 
 Apply for access to ML cloud [here](https://uni-tuebingen.de/de/199396). 
