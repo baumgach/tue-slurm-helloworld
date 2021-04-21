@@ -153,6 +153,10 @@ Further note that the above command references the code at `/opt/code`. This cop
 
 However, as long as the container is still on your local machine you can change `/opt/code/multiply.py` to the path on your local machine (i.e. perhaps something like `$HOME/tue-slurm-helloworld/multiply.py`). Because this copy of the code was not copied, but is mounted, any changes you make, will take effect and you do not need to rebuild your container each time (only once you want to deploy it remotely).
 
+### (Optional) Use Pipenv to manage python environment
+
+As an alternative to the workflow described above, check out [this tutorial](https://github.com/lmkoch/tue-slurm-helloworld/blob/master/pipenv_singularity_tutorial.md) to work with pipenv virtual environments.
+
 ## Running the code on Slurm
 
 Move the slurm instruction file and the container over to slurm like this
