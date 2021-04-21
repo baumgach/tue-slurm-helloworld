@@ -54,7 +54,7 @@ I assume you have a share `/mnt/qb/groupname/` under which you have your project
 ````
 mkdir -p /mnt/qb/groupname/path/to/venvs/
 ````
-Note that when you use pipenv outside your container, the environments will be stored elsewhere (probably in `~/.venv/`). This is desirable, because now you can just use pipenv in your project code from different systems (container and locally) and the environments will not interfere with each other.
+Note that when you use pipenv outside your container, the environments will be stored elsewhere (probably in `~/.venv/`). This is desirable, because now you can just use pipenv in your project code directory from different systems (container and locally) and the environments will not interfere with each other.
 
 
 You can now install dependencies with:
