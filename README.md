@@ -102,6 +102,11 @@ Explanations:
  - `deeplearning.def` contains instructions on how to build the container. It's a text file, have a look at it if you want. 
  - Importantly, this file contains the specification of the "operating system", a Ubuntu 20.04 with cuda support in this case, and instructions to install Python3 with all required packages for this example. 
 
+### (Optional) Use Pipenv to manage python environment
+
+As an alternative to the workflow described above, check out [these additional instructions](https://github.com/lmkoch/tue-slurm-helloworld/blob/master/pipenv_singularity_tutorial.md) on how to work with pipenv virtual environments.
+
+
 ### Entering the new container in a shell
 
 You can now enter a shell in your container using the following command and have a look around. 
@@ -138,23 +143,23 @@ your current working directory but not under `/opt/code`.
 
 You can exit the container using `exit` or `Ctrl+d`. 
 
-### Advantages and disadvantages of baking code into the container
+### Executing stuff in the container 
 
-The following are general remarks not related to this tutorial. 
+You can execute the Python code without having to enter the container using the `exec` option as follows: 
 
-You have two options to run code on slurm using a singularity container:
- 1. Copy it into the container locally and then move the whole container including code over to slurm and run it there (as we do in this tutorial). 
- 2. Do not copy your code into the container, but rather move it to your home directory on the remote slurm host and access it from there (which we can do because singularity always automatically mounts the home directory no matter where we run it)
+````
+singularity exec --nv --bind /mnt/qb/baumgartner deeplearning.sif python3 /opt/code/multiply.py --timer_repetitions 10000 --use-gpu
+````
 
- The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did. 
+Explanations:
+ - The `--nv` option is required to enable GPU access
+ - The `--bind` option mounts the `baumgartner` folder also inside the container
+ - Note that we are also passing some options to the Python script at the end
+ - Note: you may not have GPU on your local machine. In that case the GPU options are simply ignored and the code executed on CPU. 
 
- However, using method (1) you will need to rebuild and copy your container to slurm everytime you change something. This, unfortunately, takes a long time because singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
+Further note that the above command references the code at `/opt/code`. This copy of the code is static. This means if you change something in your code, you need to rebuild the container for the changes to take effect. 
 
-Method (2) seemes the preferable one for actual research and development. You can have your code permanently in your slurm directory and edit it locally by mounting your slurm home locally using `sshfs` like above. Another option is to use a SSH extension for yor IDE such as the "Remote -SSH" extension for Visual Studio Code. 
-
-### (Optional) Use Pipenv to manage python environment
-
-As an alternative to the workflow described above, check out [these additional instructions](https://github.com/lmkoch/tue-slurm-helloworld/blob/master/pipenv_singularity_tutorial.md) on how to work with pipenv virtual environments.
+However, as long as the container is still on your local machine you can change `/opt/code/multiply.py` to the path on your local machine (i.e. perhaps something like `$HOME/tue-slurm-helloworld/multiply.py`). Because this copy of the code was not copied, but is mounted, any changes you make, will take effect and you do not need to rebuild your container each time (only once you want to deploy it remotely).
 
 ## Running the code on Slurm
 
@@ -194,23 +199,19 @@ Of course this is a very basic example, and you should later taylor `deploy.sh` 
 
 More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
 
-### Executing stuff in the container 
+### Advantages and disadvantages of baking code into the container
 
-You can execute the Python code without having to enter the container using the `exec` option as follows: 
+The following are general remarks not related to this tutorial. 
 
-````
-singularity exec --nv --bind /mnt/qb/baumgartner deeplearning.sif python3 /opt/code/multiply.py --timer_repetitions 10000 --use-gpu
-````
+You have two options to run code on slurm using a singularity container:
+ 1. Copy it into the container locally and then move the whole container including code over to slurm and run it there (as we do in this tutorial). 
+ 2. Do not copy your code into the container, but rather move it to your home directory on the remote slurm host and access it from there (which we can do because singularity always automatically mounts the home directory no matter where we run it)
 
-Explanations:
- - The `--nv` option is required to enable GPU access
- - The `--bind` option mounts the `baumgartner` folder also inside the container
- - Note that we are also passing some options to the Python script at the end
- - Note: you may not have GPU on your local machine. In that case the GPU options are simply ignored and the code executed on CPU. 
+ The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did. 
 
-Further note that the above command references the code at `/opt/code`. This copy of the code is static. This means if you change something in your code, you need to rebuild the container for the changes to take effect. 
+ However, using method (1) you will need to rebuild and copy your container to slurm everytime you change something. This, unfortunately, takes a long time because singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
 
-However, as long as the container is still on your local machine you can change `/opt/code/multiply.py` to the path on your local machine (i.e. perhaps something like `$HOME/tue-slurm-helloworld/multiply.py`). Because this copy of the code was not copied, but is mounted, any changes you make, will take effect and you do not need to rebuild your container each time (only once you want to deploy it remotely).
+Method (2) seemes the preferable one for actual research and development. You can have your code permanently in your slurm directory and edit it locally by mounting your slurm home locally using `sshfs` like above. Another option is to use a SSH extension for yor IDE such as the "Remote -SSH" extension for Visual Studio Code. 
 
 ## Useful links for context
 
