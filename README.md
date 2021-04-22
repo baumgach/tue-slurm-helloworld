@@ -13,7 +13,7 @@ This examples assumes that you are using [Ubuntu Linux](https://ubuntu.com/). Ge
 Useful things to familiarise yourself with before starting:
  - [SSH and SSH keys](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
  - [Containers in general](https://www.docker.com/resources/what-container) and [singularity containers](https://en.wikipedia.org/wiki/Singularity_(software))
- - The [Slurm job scheduling system](https://slurm.schedmd.com/overview.html) and how its [user guide on the ML Cloud](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
+ - The [Slurm job scheduling system](https://slurm.schedmd.com/overview.html) and its [user guide on the ML Cloud](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
 
 ## Get access to Slurm
 
