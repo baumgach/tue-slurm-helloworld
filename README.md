@@ -140,6 +140,20 @@ your current working directory but not under `/opt/code`.
 
 You can exit the container using `exit` or `Ctrl+d`. 
 
+### Advantages and disadvantages of baking code into the container
+
+The following are general remarks not related to this tutorial. 
+
+You have two options to run code on slurm using a singularity container:
+ 1. Copy it into the container locally and then move the whole container including code over to slurm and run it there. 
+ 2. Do not copy your code into the container, but rather move it to your home directory on the remote slurm host and access it from there (which we can do because singularity always automatically mounts the home directory no matter where we run it)
+
+ The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did. 
+
+ However, using method (1) you will need to rebuild and copy your container to slurm everytime you change something. This, unfortunately, takes a long time because singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
+
+Method (2) seemes the preferable one for actual research and development. You can have your code permanently in your slurm directory and edit it locally by mounting your slurm home locally using `sshfs` like above. Another option is to use a SSH extension for yor IDE such as the "Remote -SSH" extension for Visual Studio Code. 
+
 ### Executing stuff in the container 
 
 You can execute the Python code without having to enter the container using the `exec` option as follows: 
