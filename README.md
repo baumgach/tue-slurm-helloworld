@@ -39,9 +39,9 @@ scp <localfile> slurm:<remote-dir>
 ````
 
 ## Build singularity
-Note: This step is required to build singularity containers on your local machine. The remote slurm host already has singularity installed, however, you do not have `sudo` permissions there, so you will only be able to execute singularity containers, but not build. Hence we need to locally build our containers on a machine where we have `sudo` permissions, and then copy the container over, as you will see in later steps. 
+Note: This step is required to build singularity containers on your local machine. The remote slurm host already has singularity installed, however, you do not have `sudo` permissions there, so you will only be able to execute singularity containers, but not build them. Hence we need to locally build our containers on a machine where we have `sudo` permissions, and then copy the container over, as you will see in later steps. 
 
-To locally build singularity, follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html) on your local machine. 
+To install singularity on your local machine, follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html).
 
 ## Locally mount shared work directory 
 Note: In general, this step will facilitate moving data around. Again this is not generally required. You could for instance completely rely on `scp` and `ssh` to move stuff around. However, it is required in the scope of this tutorial if you want to test your container locally first before moving it over to the slurm host. This is because the `multiply.py` script that we will run later relies on some "data" that is located in a remote shared folder on the slurm host. 
