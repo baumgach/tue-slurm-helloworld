@@ -211,7 +211,7 @@ You have two options to run code on slurm using a singularity container:
 
  However, using method (1) you will need to rebuild and copy your container to slurm everytime you change something. This, unfortunately, takes a long time because singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
 
-Method (2) seemes the preferable one for actual research and development. You can have your code permanently in your slurm directory and edit it locally by mounting your slurm home locally using `sshfs` like above. Another option is to use a SSH extension for yor IDE such as the "Remote -SSH" extension for Visual Studio Code. 
+Method (2) seemes the preferable one for actual research and development. You can have your code permanently in your slurm directory and edit it locally by mounting your slurm home locally using `sshfs` like above. Another option is to use a SSH extension for your IDE such as the "Remote -SSH" extension for Visual Studio Code. 
 
 ## Useful links for context
 
