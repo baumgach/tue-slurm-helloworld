@@ -10,6 +10,11 @@ The idea is to get a first "Hello World" type example working in order to unders
 
 This examples assumes that you are using [Ubuntu Linux](https://ubuntu.com/). Generally speaking, all of the below stuff is also possible with other Linux distirbutions, Macs and Windows (using [Putty](https://www.putty.org/)). The instructions below may partially work using those other operating systems, but it is likely that some commands or steps will require changes. 
 
+Useful things to familiarise yourself with before starting:
+ - [SSH and SSH keys](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
+ - [Containers in general](https://www.docker.com/resources/what-container) and [singularity containers](https://en.wikipedia.org/wiki/Singularity_(software))
+ - The [Slurm job scheduling system](https://slurm.schedmd.com/overview.html) and how its [user guide on the ML Cloud](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
+
 ## Get access to Slurm
 
 Apply for access to ML cloud [here](https://uni-tuebingen.de/de/199396). 
