@@ -38,7 +38,7 @@ ssh slurm
 scp <localfile> slurm:<remote-dir>
 ````
 
-## Build singularity
+## Install singularity on your local machine
 Note: This step is required to build singularity containers on your local machine. The remote slurm host already has singularity installed, however, you do not have `sudo` permissions there, so you will only be able to execute singularity containers, but not build them. Hence we need to locally build our containers on a machine where we have `sudo` permissions, and then copy the container over, as you will see in later steps. 
 
 To install singularity on your local machine, follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html).
