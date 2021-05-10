@@ -42,7 +42,7 @@ You can now allocate your desired resources. There are plenty of options to spec
 A more comprehensive overview is given in the [MLcloud wiki](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm). Let's allocate a job:
 
 ````
-> salloc --gres gpu:1 --mem=50G
+> salloc --gres gpu:1 --mem=50G --no-shell
 
 salloc: Granted job allocation 262198
 salloc: Waiting for resource configuration
