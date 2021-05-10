@@ -25,7 +25,7 @@ this allows you to simply do
 > ssh slurm
 ````
 
-In case you have trouble with the key forwarding, check out this [Stackoverflow answer](https://stackoverflow.com/a/38986908/2323484) (click here for further help on [Windows](https://stackoverflow.com/questions/52113738/starting-ssh-agent-on-windows-10-fails-unable-to-start-ssh-agent-service-erro).
+In case you have trouble with the key forwarding, check out this [Stackoverflow answer](https://stackoverflow.com/a/38986908/2323484) (click [here](https://stackoverflow.com/questions/52113738/starting-ssh-agent-on-windows-10-fails-unable-to-start-ssh-agent-service-erro) for further help on Windows).
 
 
 ## Allocating resources
