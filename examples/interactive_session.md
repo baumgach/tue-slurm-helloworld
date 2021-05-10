@@ -25,6 +25,8 @@ this allows you to simply do
 > ssh slurm
 ````
 
+In case you have trouble with the key forwarding, check out this [Stackoverflow answer](https://stackoverflow.com/a/38986908/2323484).
+
 
 ## Allocating resources
 
