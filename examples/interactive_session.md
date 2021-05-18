@@ -4,7 +4,7 @@ Interactive slurm sessions can be used (among other ways) to ssh onto a cluster 
 
 ## Access the SLURM headnode
 
-To get started, we ssh to the slurm headnode (this assumes you have deployed your keys before, see main tutorial).
+To get started, we ssh to the slurm headnode.
 
 ````
 > ssh -A <slurm-username>@134.2.168.52
@@ -25,7 +25,11 @@ this allows you to simply do
 > ssh slurm
 ````
 
-In case you have trouble with the key forwarding, check out this [Stackoverflow answer](https://stackoverflow.com/a/38986908/2323484) (click [here](https://stackoverflow.com/questions/52113738/starting-ssh-agent-on-windows-10-fails-unable-to-start-ssh-agent-service-erro) for further help on Windows).
+Notes:
+
+* You need to [deploy your public key](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)), i.e. copy your public ssh key to the file `~/.ssh/authorized_keys` on your slurm home directory. Password authorised access is revoked within a few days of account activation.
+
+* In case you have trouble with the key forwarding, check out this [Stackoverflow answer](https://stackoverflow.com/a/38986908/2323484) (click [here](https://stackoverflow.com/questions/52113738/starting-ssh-agent-on-windows-10-fails-unable-to-start-ssh-agent-service-erro) for further help on Windows). Most likely, you just need to run `ssh-add` in your local terminal.
 
 
 ## Allocating resources
@@ -60,6 +64,7 @@ You can now ssh to your allocated node with
 
 That's it, now you can get to work.
 
+
 ## Running a jupyter notebook
 
 Let's run a simple Jupyter notebook that measures matrix multiplication time and writes the result to a file somewhere on `/mnt/qb/berens/`. to access the remote jupyter notebook server, we need to do some clever ssh tunneling, since we're doing two hops: first from our local machine to the slurm headnode, then on to the node we have allocated.
@@ -79,8 +84,10 @@ We are now on our remote host. To run the jupyter notebook server, we need a sin
 Since this takes a while, I also put a pre-built container in `/mnt/qb/berens/lkoch/slurm-tutorial` - feel free to use that one. Now you can run the notebook server on port 8003:
 
 ````
-> singularity exec --bind /mnt/qb/berens interactive_session.sif jupyter-notebook --port 8003
+> singularity exec --nv --bind /mnt/qb/berens interactive_session.sif jupyter-notebook --port 8003
 ````
+
+Here, `--nv` enables GPU access. You can remove this option if not needed. The option `--bind /mnt/qb/berens` mounts the folder `/mnt/qb/berens` in the container, which allows the code to access the file system for read and write operations. Your slurm home directory is mounted by default.
 
 That's it. You can now go to `localhost:8001` in your local browser to run the remote notebook.
 
@@ -89,3 +96,4 @@ Note that we mounted `/mnt/qb/berens` in the container. This way you have read/w
 ## Release your resources
 
 When you're done, remember to release your resources with `scancel <job-id>`!
+
