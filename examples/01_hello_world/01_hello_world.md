@@ -59,16 +59,5 @@ More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud
 
 ## What next?
 
-- [SSH configuration](./02_ssh_config.md)
-- [Getting your code and data on the slurm cluster](./03_file_transfer.md)
-- Running python code on slurm
-- Running jobs with complex dependencies using containers
-- Interactive sessions
+[SSH configuration](../02_ssh_config/02_ssh_config.md)
 
-## Useful links for context
-
- - [Singularity tutorial with GPU use and PyTorch](https://github.com/bdusell/singularity-tutorial)
- - [A python tool for deploying slurm jobs](https://github.com/sinzlab/tue-slurm/) with singularity containers developed by the Sinz lab
- - [A list of all available Docker images](https://hub.docker.com/r/nvidia/cuda/) with Cuda support to build the container from (if you are not happy with Ubunut 20.04)
- - [ML Cloud Slurm Wiki](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
- - [Singularity user guide](https://sylabs.io/guides/3.7/user-guide/)

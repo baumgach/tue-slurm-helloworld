@@ -16,9 +16,13 @@ scontrol show job $SLURM_JOB_ID
 
 # insert your commands here. these will be executed on the compute node allocated for the job (not on the slurm headnode!)
 
+# get correct path to python
+source ~/.bashrc
+
+# activate conda environment
 conda activate myenv
 
-python python_example.py.py
+python python_example.py
 
 echo "My job is done."
 

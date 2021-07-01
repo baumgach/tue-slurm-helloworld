@@ -60,6 +60,7 @@ Note:
 <your-slurm-username>@134.2.168.52:/home/<your_group_name>/<your_user_name> ~/mnt/slurm/<your-user-name> fuse.sshfs allow_other,IdentityFile=/home/$USER/.ssh/id_rsa
 ````
 
+## What next?
 
-
+[Running python code on slurm](./04_python_example/04_python_example.md)
 

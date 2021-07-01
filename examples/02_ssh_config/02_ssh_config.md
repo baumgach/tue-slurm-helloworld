@@ -43,3 +43,7 @@ Host some_other_host
     Port 60222
     LocalForward 6006 localhost:6006
 ````
+
+## What next?
+
+[Getting your code and data on the slurm cluster](./03_file_transfer/03_file_transfer.md)
