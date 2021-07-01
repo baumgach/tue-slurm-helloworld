@@ -24,11 +24,11 @@ Once Slurm access is granted as well switch to SSH-key based authentication as d
 ## Next steps
 
 1. [Hello World example](./examples/01_hello_world/README.md)
-2. [SSH configuration](./examples/02_ssh_config/02_ssh_config.md)
-3. [Getting your code and data on the slurm cluster](./examples/03_file_transfer/03_file_transfer.md)
-4. [Running python code on slurm](./examples/04_python_example/04_python_example.md)
+2. [SSH configuration](./examples/02_ssh_config/README.md)
+3. [Getting your code and data on the slurm cluster](./examples/03_file_transfer/README.md)
+4. [Running python code on slurm](./examples/04_python_example/README.md)
 5. Running jobs using containers - coming soon<!-- [Running jobs using containers](./05_singularity/05_singularity.md) -->
-6. [Interactive sessions: Jupyter notebook example](./examples/06_interactive_session/06_interactive_session.md)
+6. [Interactive sessions: Jupyter notebook example](./examples/06_interactive_session/README.md)
 
 
 
