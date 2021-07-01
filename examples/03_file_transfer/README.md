@@ -62,5 +62,5 @@ Note:
 
 ## What next?
 
-[Running python code on slurm](./04_python_example/04_python_example.md)
+[Running python code on slurm](./04_python_example/README.md)
 

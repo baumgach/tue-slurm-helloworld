@@ -59,5 +59,5 @@ More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud
 
 ## What next?
 
-[SSH configuration](../02_ssh_config/02_ssh_config.md)
+[SSH configuration](../02_ssh_config/README.md)
 

@@ -46,4 +46,4 @@ Host some_other_host
 
 ## What next?
 
-[Getting your code and data on the slurm cluster](./03_file_transfer/03_file_transfer.md)
+[Getting your code and data on the slurm cluster](./03_file_transfer/README.md)
