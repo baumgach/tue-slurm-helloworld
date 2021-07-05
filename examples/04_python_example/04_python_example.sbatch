@@ -14,5 +14,15 @@
 # print info about current job
 scontrol show job $SLURM_JOB_ID 
 
-# insert your commands here
-singularity exec --nv --bind /mnt/qb/baumgartner deeplearning.sif python3 /opt/code/multiply.py --timer_repetitions 10000 --use-gpu
+# insert your commands here. these will be executed on the compute node allocated for the job (not on the slurm headnode!)
+
+# get correct path to python
+source ~/.bashrc
+
+# activate conda environment
+conda activate myenv
+
+python python_example.py
+
+echo "My job is done."
+
