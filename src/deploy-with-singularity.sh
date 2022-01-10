@@ -14,5 +14,11 @@
 # print info about current job
 scontrol show job $SLURM_JOB_ID 
 
-# insert your commands here
-singularity exec --nv --bind /mnt/qb/baumgartner deeplearning.sif python3 /opt/code/multiply.py --timer_repetitions 10000 --use-gpu
+# Make a folder for writing logs and error messages (STDOUT and STDERR)
+mkdir -p logs 
+
+# Run singularity command 
+singularity exec --nv --bind /mnt/qb/baumgartner,`pwd` deeplearning.sif \
+   python3 /opt/code/multiply.py \
+      --timer_repetitions 10000 \
+      --use-gpu

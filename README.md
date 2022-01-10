@@ -1,89 +1,53 @@
-# Instructions
+# Tübingen ML Cloud Hello World Example(s)
 
-This example contains some Python PyTorch code to multiply two matrices, and the necessary files and instrutions to build a singularity container containing this code and deploying it on the ML Cloud slurm host.
+The goal of this repository is to give an easy entry point to people who want to use the [Tübingen ML Cloud](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/home), and in particular [Slurm](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#common-slurm-commands), to run Python code on GPUs.
 
-The idea is to get a first "Hello World" type example working in order to understand how all these components fit together. This is not intented as a fully functional tool for getting productive. Consider it a starting point.
+Specifically, this tutorial contains a small Python code sample for multiplying two matrices using PyTorch and instructions for setting up the required environments and executing this code on CPU or GPU on the ML Cloud. 
 
-## Prerequisites
+The tutorial consists of a minimal example for getting started quickly, and a number of slightly more detailed instructions explaining different workflows and aspects of the ML Cloud. 
 
-This example assumes that you are using [Ubuntu Linux](https://ubuntu.com/). Generally speaking, all of the below stuff is also possible with other Linux distirbutions, Macs and Windows (using [Putty](https://www.putty.org/)). The instructions below may partially work using those other operating systems, but it is likely that some commands or steps will require changes.
+**This is not an official introduction**, but rather a tutorial put together by the members of the [Machine Learning in Medical Image Analysis (MLMIA) lab](www.mlmia-unitue.de). The official ML Cloud Slurm wiki can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#common-slurm-commands). If you do spot mistakes or have suggestions, comments and pull requests are very welcome.  
 
-Useful things to familiarise yourself with before starting:
- - [SSH and SSH keys](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
- - [Containers in general](https://www.docker.com/resources/what-container) and [singularity containers](https://en.wikipedia.org/wiki/Singularity_(software))
- - The [Slurm job scheduling system](https://slurm.schedmd.com/overview.html) and its [user guide on the ML Cloud](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
+## Who is this for?
 
-## Get access to Slurm
+This repository was compiled with members of the MLMIA lab in mind to enable them to have a smooth start with the ML Cloud. 
 
-Apply for access to ML cloud [here](https://uni-tuebingen.de/de/199396).
+You will notice that in many places, paths refer to locations only accessible to the MLMIA group such as `/mnt/qb/baumgartner`. However, there should be equivalent paths for members of all groups. For example, if you are part of the Beren's group there would be an equivalent `/mnt/qb/berens` folder to which you *will* have access. 
 
-Once access is granted contact [Benjamin Gläßle](mailto:benjamin.glaessle@uni-tuebingen.de), or one of the other [ML Cloud team members](https://uni-tuebingen.de/forschung/forschungsschwerpunkte/exzellenzcluster-maschinelles-lernen/forschung/forschung/zentrale-einrichtungen/machine-learning-science-cloud/), to get access to Slurm.
+The instructions were written with Linux users in mind. Most of the instructions will translate to Mac, as well. If you use windows, you may have to resort to [Putty](https://www.putty.org/), although newer versions now also support `ssh` in the [Windows terminal](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh). 
 
-Once Slurm access is granted as well switch to SSH-key based authentication as described [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#login-and-access).
+## Contents
 
-### Create a SSH config
-Note: This will prevent you from going crazy by having to type the IP address each time.
+Contents of this tutorial
+  * [Minimal example](#minimal-example): The shortest path from getting an account to running the `multiply.py` code on GPU. 
+  * [Initial Setup](/instructions/initial-setup.md): Some useful tricks for setting up your SSH connections and mounting Slurm volumes locally for working more efficiently. 
+  * [Virtual environment workflow](/instructions/virtual-env-workflow.md): A more in detailed explanation of the workflow based on virtual environments also used in the minimal example. 
+  * [Singularity workflow](/instructions/singularity-workflow.md): An alternative workflow using Singularity containers, which allows for more flexibility.
+  * [Running parallel jobs](/instructions/parallel-jobs.md): A short introduction to executing a command for a list of parameters in parallel on multiple GPUs. 
+  * [Interactive Jobs and Debugging](/instructions/interactive-jobs.md): How to run interactive jobs and how to debug Python code on Slurm. 
+  * [Useful commands](/instructions/useful-commands.md): Some commonly used Slurm commands for shepherding jobs. 
 
-On your local machine, create a file `$HOME/.ssh/config` with the following content:
 
-````
-Host slurm
-    HostName 134.2.168.52
-    User <your-slurm-username>
-````
+## Minimal example
 
-You can now `ssh` and `scp` using the following syntax
-````
-ssh slurm
-scp <localfile> slurm:<remote-dir>
-````
+So you have just obtained access to Slurm from the [ML Cloud Masters](mailto:mlcloudmaster@uni-tuebingen.de)? What now? 
 
-## Install singularity on your local machine
-Note: This step is required to build singularity containers on your local machine.
+### Access via ssh keys
 
-To install singularity on your local machine, follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html).
+Once Slurm access is granted as well switch to SSH-key based authentication as described [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#login-and-access). Password access is disabled after a few days. 
 
-The remote slurm host already has singularity installed, so you could also perform the build step detailed below, directly on slurm if you prefer.
+### Download the tutorial code
 
-## Locally mount shared work directory
-Note: In general, this step will facilitate moving data around. Again this is not generally required. You could for instance completely rely on `scp` and `ssh` to move stuff around. However, it is required in the scope of this tutorial if you want to test your container locally first before moving it over to the slurm host. This is because the `multiply.py` script that we will run later relies on some "data" that is located in a remote shared folder on the slurm host.
-
-Therefore, in the follwing we will mount the remote shared folder `/mnt/qb/baumgartner` to the same location on your local system. It could also be a different location on your local system, but if we keep the path exactly the same, we do not need to change the paths in the code each time.
-
-All the following steps need to be executed on your local machine.
-
-In case you do not have `sshfs` installed, you need to do so using
-````
-sudo apt-get install sshfs
-````
-This is a program that allows us to mount a remote folder on our local machine using the `ssh` protocol.
-
-Next, on your local machine create the mount point where you want to mount the remote folder. In our case:
-````
-sudo mkdir -p /mnt/qb/baumgartner
-````
-The `-p` is required because we are creating a whole hierarchy, not just a single folder. `sudo` is required because we are creating the folders in the root directory `/`, where the user does not have write access.
-
-Next we mount the remote folder using the following command:
+Login to the Slurm login node using 
 
 ````
-sudo sshfs -o allow_other,IdentityFile=/home/$USER/.ssh/id_rsa <your-slurm-username>@134.2.168.52:/mnt/qb/baumgartner /mnt/qb/baumgartner
+ssh <your-slurm-username>@134.2.168.52
+```` 
+Switch to your work directory using 
 ````
-This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. You might have to map your local username's user_id and group_id to the mountpoint by adding the options `` -o uid=`id -u username` -o gid=`id -g username` ``. This is not necessarily the case, but may help if you don't have your remote user's privileges.
-
-
-Note: The folder only stays mounted as long as your internet connection doesn't drop. So, if you for instance reboot your machine, you need to re-execute the `sshfs` command. To automatically mount the folder upon rebooting, add the following line to the file `/etc/fstab` (you need to use root access for this).
-
+cd $WORK
 ````
-<your-slurm-username>@134.2.168.52:/mnt/qb/baumgartner /mnt/qb/baumgartner fuse.sshfs allow_other,IdentityFile=/home/$USER/.ssh/id_rsa
-````
-
-## Download code and build singularity container
-
-### Getting the example code and building the container
-
-Download the code in your current working directory using the following line:
-
+Download the contents (including code) of this tutorial into your current working directory using the following line:
 ````
 git clone https://github.com/baumgach/tue-slurm-helloworld.git
 ````
@@ -94,132 +58,92 @@ Change to code directory
 cd tue-slurm-helloworld
 ````
 
-Build singularity container
+The code for `multiply.py`, which we want to execute is now on Slurm. You can look at it using 
+````
+cat src/multiply.py
+````
+or your favourite command line editor. 
+
+### Setting up a Python environment 
+
+This code depends on a number of specific Python packages that are not installed on the Slurm nodes globally. We also cannot install them ourselves because we lack permissions. Instead we will create a virtual environment using [Conda](https://docs.conda.io/en/latest/). 
+
+Create an environment called `myenv` using the following command
+
 
 ````
-singularity build --fakeroot deeplearning.sif deeplearning.def
+conda create -n myenv 
 ````
 
-Explanations:
- - `deeplearning.def` contains instructions on how to build the container. It's a text file, have a look at it if you want.
- - Importantly, this file contains the specification of the "operating system", a Ubuntu 20.04 with cuda support in this case, and instructions to install Python3 with all required packages for this example.
+and confirm with `y`. 
 
-
-### (Optional) Use Pipenv to manage python environment
-
-As an alternative to the workflow described above, check out [these additional instructions](https://github.com/lmkoch/tue-slurm-helloworld/blob/master/pipenv_singularity_tutorial.md) on how to work with pipenv virtual environments.
-
-
-### Entering the new container in a shell
-
-You can now enter a shell in your container using the following command and have a look around.
+Activate the new environment using 
 
 ````
-singularity shell --bind /mnt/qb/baumgartner deeplearning.sif
+conda activate myenv
 ````
 
-The bind option is not necessary to enter the container. It will mount the `baumgartner` folder, so you have access to it from inside the container also. This is important for the `multiply.py` script to execute successfully.  
-
-You are now running an encapsulated operating system as specified in `deeplearning.def`.
-Try opening an `ipython` terminal.
-Note that your home directory and current working directory automatically get mounted inside the container. This is not true for all paths, however.
-
-The following lines in the `deeplearning.def` file
-````
-%files
-    multiply.py /opt/code
-````
-copies your code to `/opt/code` in the container. We copied it there so it would be baked into the container, so when you move the container elsewhere the code is still around.
-
-The code is also available in your current working directory. So technically it is there twice. However, when you later move your container to another location (e.g. to the slurm host), the working directory with the code (which only mounted) will no longer be the same. The copied code in `/opt/code`, on the other hand, stays with the container.   
-
-You can navigate to either copy of the code and execute it using
+We can install packages using `conda install` 
 
 ````
-python3 multiply.py
+conda install numpy matplotlib ipython pytorch torchvision 
 ````
+Note that this will also automatically install a newer Python version as a dependency of PyTorch. We can also choose a specific Python version as explained in the [more detailed instructions](/instructions/virtual-env-workflow.md). 
 
-Note that the code assumes that the following file exists on Slurm: `/mnt/qb/baumgartner/storagetest.txt`. I have put it there, so if nothing has changed it should be there. It contains a single integer specifying the size of the matrices to be multiplied in `multiply.py`. The idea behind this is to simulate dependence on external data. In a real-world example, this could for example be a medical dataset.
+### Running the code on GPU 
 
-**An important thing to note:** When you change your code after building the container, it will be changed in
-your current working directory but not under `/opt/code`.
+Code can be deployed to GPUs using the Slurm `sbatch` command and a "deployment" script that specifies what resources specifically we request, and what code should be executed. 
 
-You can exit the container using `exit` or `Ctrl+d`.
+Such a deployment script for Conda is provided in [src/deploy-with-conda.sh](src/deploy-with-conda.sh). The top part consists of our requested resources:
 
-### Executing stuff in the container
-
-You can execute the Python code without having to enter the container using the `exec` option as follows:
-
-````
-singularity exec --nv --bind /mnt/qb/baumgartner deeplearning.sif python3 /opt/code/multiply.py --timer_repetitions 10000 --use-gpu
-````
-
-Explanations:
- - The `--nv` option is required to enable GPU access
- - The `--bind` option mounts the `baumgartner` folder also inside the container
- - Note that we are also passing some options to the Python script at the end
- - Note: you may not have GPU on your local machine. In that case the GPU options are simply ignored and the code executed on CPU.
-
-Further note that the above command references the code at `/opt/code`. This copy of the code is static. This means if you change something in your code, you need to rebuild the container for the changes to take effect.
-
-However, as long as the container is still on your local machine you can change `/opt/code/multiply.py` to the path on your local machine (i.e. perhaps something like `$HOME/tue-slurm-helloworld/multiply.py`). Because this copy of the code was not copied, but is mounted, any changes you make, will take effect and you do not need to rebuild your container each time (only once you want to deploy it remotely).
-
-## Running the code on Slurm
-
-Move the slurm instruction file and the container over to slurm like this
-
-````
-scp deploy.sh deeplearning.sif slurm:/home/baumgartner/<your-slurm-username>
-````
-
-The `deploy.sh` file contains instructions for your slurm job. Those are a bunch of options for which GPUs to use etc, and which code to execute. In this case, `multiply.py`.
-
-Then connect to the remote slurm host
-````
-ssh slurm
-````
-
-Among other things `deploy.sh` contains the following two lines
-
-````
+````bash
+# Part of deploy-with-conda.sh
+#SBATCH --ntasks=1                # Number of tasks (see below)
+#SBATCH --cpus-per-task=1         # Number of CPU cores per task
+#SBATCH --nodes=1                 # Ensure that all cores are on one machine
+#SBATCH --time=0-00:05            # Runtime in D-HH:MM
+#SBATCH --partition=gpu-2080ti-dev # Partition to submit to
+#SBATCH --gres=gpu:1              # optionally type and number of gpus
+#SBATCH --mem=50G                 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --output=logs/hostname_%j.out  # File to which STDOUT will be written
 #SBATCH --error=logs/hostname_%j.err   # File to which STDERR will be written
-````
-specifying where the log and error files for each job will be written to. You can see, that this script writes them to a `logs` directory relative to your working directory, i.e. the folder where you execute your container command. Unfortunately, Slurm will not create this folder automatically, so we need to do it manually first using
-````
-mkdir logs
+#SBATCH --mail-type=FAIL           # Type of email notification- BEGIN,END,FAIL,ALL
+#SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 ````
 
-Then submit your slurm job using the following command
+For example, we are requesting 1 GPU from the gpu-2080ti-dev partition. See [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#partitions) for a list of all available partitions and [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#submitting-batch-jobs) for an explanations of the available options. 
+
+The bottom part of the `deploy-with-conda.sh` script consists of bash instructions that will be executed on the assigned work node. In particular it contains the following four lines, which make a logs directory, activate the environment, run the code, and deactivate the environment again.
+
+````bash
+# Part of deploy-with-conda.sh
+mkdir -p logs 
+conda activate myenv
+python3 src/multiply.py --timer_repetitions 10000 --use-gpu
+conda deactivate
 ````
-sbatch deploy.sh
+
+You can submit this job using the following command 
+````
+sbatch src/deploy-with-conda.sh
 ````
 
-This will run the job on slurm as specified in `deploy.sh`. Note by the way, that the leading `#SBATCH` do not mean that those lines are commented out. This is just slurm syntax.
+### Checking job and looking at results
 
-Have a look at the outputs written to `~/logs/`.
-Of course this is a very basic example, and you should later taylor `deploy.sh` to your needs.
+After submitting the job you can check its progress using 
+````
+squeue --me
+````
 
-More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
+After it has finished you can look at the results in the log files in the `logs` directory for example using `cat`. 
 
-### Advantages and disadvantages of baking code into the container
+````
+ls logs
+cat logs/<logfilename>.out
+````
 
-The following are general remarks not related to this tutorial.
+The file ending in `.out` contains the STDOUT, i.e. all print statement and things like that. The file ending in `.err` contains the STDERR, i.e. any error messages that were generated (hopefully none). 
 
-You have two options to run code on slurm using a singularity container:
- 1. Copy it into the container locally and then move the whole container including code over to slurm and run it there (as we do in this tutorial).
- 2. Do not copy your code into the container, but rather move it to your home directory on the remote slurm host and access it from there (which we can do because singularity always automatically mounts the home directory no matter where we run it)
+### What now?
 
- The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did.
-
- However, using method (1) you will need to rebuild and copy your container to slurm everytime you change something. This, unfortunately, takes a long time because singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
-
-Method (2) seemes the preferable one for actual research and development. You can have your code permanently in your slurm directory and edit it locally by mounting your slurm home locally using `sshfs` like above. Another option is to use a SSH extension for your IDE such as the "Remote -SSH" extension for Visual Studio Code.
-
-## Useful links for context
-
- - [Singularity tutorial with GPU use and PyTorch](https://github.com/bdusell/singularity-tutorial)
- - [A python tool for deploying slurm jobs](https://github.com/sinzlab/tue-slurm/) with singularity containers developed by the Sinz lab
- - [A list of all available Docker images](https://hub.docker.com/r/nvidia/cuda/) with Cuda support to build the container from (if you are not happy with Ubunut 20.04)
- - [ML Cloud Slurm Wiki](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm)
- - [Singularity user guide](https://sylabs.io/guides/3.7/user-guide/)
+This concludes the minimal example. If you want to learn more, you can have a look at the more detailed instructions described in the [Contents section](#contents) above. 

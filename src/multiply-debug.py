@@ -20,6 +20,9 @@ def time_multiplication(
     x = torch.randn(32, s)
     y = torch.randn(s, 32)
     
+    import ipdb
+    ipdb.set_trace()
+
     # Check if Cuda available and move tensor to Cuda if yes
     cuda_available = torch.cuda.is_available() 
     print(f"Cuda_available={cuda_available}")
