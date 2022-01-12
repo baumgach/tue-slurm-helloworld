@@ -90,7 +90,7 @@ ls -ltrh
 You can then look at the output log file and error file corresponding to your job using the `cat` or `less` commands. For example:
 
 ````
-cat logs/hostname_<job-id>.out
+cat logs/job_<job-id>.out
 ````
 
 ## Alternative workflow using virtualenv 
