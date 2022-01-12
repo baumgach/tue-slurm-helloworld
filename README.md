@@ -6,7 +6,7 @@ Specifically, this tutorial contains a small Python code sample for multiplying 
 
 The tutorial consists of a minimal example for getting started quickly, and a number of slightly more detailed instructions explaining different workflows and aspects of the ML Cloud. 
 
-**This is not an official introduction**, but rather a tutorial put together by the members of the [Machine Learning in Medical Image Analysis (MLMIA) lab](www.mlmia-unitue.de). The official ML Cloud Slurm wiki can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#common-slurm-commands). If you do spot mistakes or have suggestions, comments and pull requests are very welcome.  
+**This is not an official introduction**, but rather a tutorial put together by the members of the [Machine Learning in Medical Image Analysis (MLMIA) lab](https://www.mlmia-unitue.de). The official ML Cloud Slurm wiki can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#common-slurm-commands). If you do spot mistakes or have suggestions, comments and pull requests are very welcome.  
 
 ## Contents
 
@@ -24,7 +24,7 @@ In-depth instructions:
 
 ## Who is this for?
 
-This repository was compiled with members of the [MLMIA lab](www.mlmia-unitue.de) in mind to enable them to have a smooth start with the ML Cloud. 
+This repository was compiled with members of the [MLMIA lab](https://www.mlmia-unitue.de) in mind to enable them to have a smooth start with the ML Cloud. 
 
 You will notice that in many places, paths refer to locations only accessible to the MLMIA group such as `/mnt/qb/baumgartner`. However, there should be equivalent paths for members of all groups. For example, if you are part of the Berens group there would be an equivalent `/mnt/qb/berens` folder to which you *will* have access. 
 
