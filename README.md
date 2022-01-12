@@ -8,18 +8,13 @@ The tutorial consists of a minimal example for getting started quickly, and a nu
 
 **This is not an official introduction**, but rather a tutorial put together by the members of the [Machine Learning in Medical Image Analysis (MLMIA) lab](www.mlmia-unitue.de). The official ML Cloud Slurm wiki can be found [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#common-slurm-commands). If you do spot mistakes or have suggestions, comments and pull requests are very welcome.  
 
-## Who is this for?
-
-This repository was compiled with members of the [MLMIA lab](www.mlmia-unitue.de) in mind to enable them to have a smooth start with the ML Cloud. 
-
-You will notice that in many places, paths refer to locations only accessible to the MLMIA group such as `/mnt/qb/baumgartner`. However, there should be equivalent paths for members of all groups. For example, if you are part of the Berens group there would be an equivalent `/mnt/qb/berens` folder to which you *will* have access. 
-
-The instructions were written with Linux users in mind. Most of the instructions will translate to Mac, as well. If you use windows, you may have to resort to [Putty](https://www.putty.org/), although newer versions now also support `ssh` in the [Windows terminal](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh). 
-
 ## Contents
 
-Contents of this tutorial
+Contents of this tutorial:
+  * [Who is this for?](#who-is-this-for): Short description of target audience
   * [Minimal example](#minimal-example): The shortest path from getting an account to running the `multiply.py` code on GPU. 
+
+In-depth instructions:
   * [Initial Setup](/instructions/initial-setup.md): Some useful tricks for setting up your SSH connections and mounting Slurm volumes locally for working more efficiently. 
   * [Virtual environment workflow](/instructions/virtual-env-workflow.md): A more in detailed explanation of the workflow based on virtual environments also used in the minimal example. 
   * [Singularity workflow](/instructions/singularity-workflow.md): An alternative workflow using Singularity containers, which allows for more flexibility.
@@ -27,6 +22,13 @@ Contents of this tutorial
   * [Interactive Jobs and Debugging](/instructions/interactive-jobs.md): How to run interactive jobs and how to debug Python code on Slurm. 
   * [Useful commands](/instructions/useful-commands.md): Some commonly used Slurm commands for shepherding jobs. 
 
+## Who is this for?
+
+This repository was compiled with members of the [MLMIA lab](www.mlmia-unitue.de) in mind to enable them to have a smooth start with the ML Cloud. 
+
+You will notice that in many places, paths refer to locations only accessible to the MLMIA group such as `/mnt/qb/baumgartner`. However, there should be equivalent paths for members of all groups. For example, if you are part of the Berens group there would be an equivalent `/mnt/qb/berens` folder to which you *will* have access. 
+
+The instructions were written with Linux users in mind. Most of the instructions will translate to Mac, as well. If you use windows, you may have to resort to [Putty](https://www.putty.org/), although newer versions now also support `ssh` in the [Windows terminal](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh). 
 
 ## Minimal example
 
