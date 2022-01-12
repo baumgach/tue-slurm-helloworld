@@ -1,4 +1,4 @@
-# Setting up a Python environment using Conda or Virtualenv
+# Using Slurm with Conda or Virtualenv
 
 In this section, we will describe an example worklow for setting up a virtual python environment and then running the `multiply.py` code which relies on PyTorch and some other libraries. 
 
