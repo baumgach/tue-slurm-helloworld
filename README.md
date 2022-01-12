@@ -111,7 +111,7 @@ Such a deployment script for Conda is provided in [src/deploy-with-conda.sh](src
 #SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 ````
 
-For example, we are requesting 1 GPU from the gpu-2080ti-dev partition. See [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#partitions) for a list of all available partitions and [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#submitting-batch-jobs) for an explanations of the available options. 
+For example, we are requesting 1 GPU from the gpu-2080ti-dev partition. See [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#partitions) for a list of all available partitions and [here](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/Slurm#submitting-batch-jobs) for an explanations of the available options. Note: the lines starting with `#SBATCH` are *not* comments. 
 
 The bottom part of the `deploy-with-conda.sh` script consists of bash instructions that will be executed on the assigned work node. In particular it contains the following four lines, which make a logs directory, activate the environment, run the code, and deactivate the environment again.
 
