@@ -41,21 +41,15 @@ python --version
 That is the system-wide Python version and is at the time of writing pretty old (2.7.5). We can instead install whichever specific Python version we like. For example
 
 ````
-conda install python==3.9
+conda install python==3.9.7
 ````
 
-We can install packages using `conda install` or `pip install`. `conda install` works for some stuff `pip install` doesn't and vice versa. 
+We can install packages using `conda install` or `pip install`. `conda install` works for some stuff `pip install` doesn't and vice versa. Writing this tutorial I had a smoother experience with `pip`. 
 
 So mimicking the dependencies in our `deeplearning.def` from the Singularity tutorial: 
 
 ````
-conda install numpy matplotlib ipython pytorch torchvision 
-````
-
-The debugging package `ipdb` is not available using conda by default, so we have to use `pip install` instead:
-
-````
-pip install ipdb
+pip install numpy torch ipdb
 ````
 
 ## Other conda commands 

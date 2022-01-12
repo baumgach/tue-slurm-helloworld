@@ -85,12 +85,16 @@ Activate the new environment using
 conda activate myenv
 ````
 
-We can install packages using `conda install` 
+There will already be a default Python, but we can install a specific Python version (e.g. 3.9.7) using 
+````
+conda install python==3.9.7
+````
+
+We can install packages using `conda install` or `pip install`. I had a smoother experience with `pip`:
 
 ````
-conda install numpy matplotlib ipython pytorch torchvision 
+pip install numpy torch
 ````
-Note that this will also automatically install a newer Python version as a dependency of PyTorch. We can also choose a specific Python version as explained in the [more detailed instructions](/instructions/virtual-env-workflow.md). 
 
 ### Running the code on GPU 
 
