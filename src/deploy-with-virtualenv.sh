@@ -12,13 +12,17 @@
 #SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 
 # print info about current job
+echo "---------- JOB INFOS ------------"
 scontrol show job $SLURM_JOB_ID 
+echo "---------------------------------\n"
 
 # Activate virtualenv 
 source $HOME/env/bin/activate
 
 # Run code
+echo "-------- PYTHON OUTPUT ----------"
 python3 src/multiply.py --timer_repetitions 10000 --use-gpu
+echo "---------------------------------"
 
 # Deactivate virtualenv again
 deactivate 

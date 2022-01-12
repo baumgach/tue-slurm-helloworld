@@ -12,7 +12,9 @@
 #SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 
 # print info about current job
+echo "---------- JOB INFOS ------------"
 scontrol show job $SLURM_JOB_ID 
+echo "---------------------------------\n"
 
 # Due to a potential bug, we need to manually load our bash configurations first
 source $HOME/.bashrc
@@ -21,7 +23,9 @@ source $HOME/.bashrc
 conda activate myenv
 
 # Run our code
+echo "-------- PYTHON OUTPUT ----------"
 python3 src/multiply.py --timer_repetitions 10000 --use-gpu
+echo "---------------------------------"
 
 # Deactivate environment again
 conda deactivate
