@@ -16,7 +16,7 @@ python3 src/multiply.py --timer_repetitions 10000 --use-gpu
 ````
 with 
 ````bash
-for seed in 1,2,3,4,5
+for seed in 1 2 3 4 5
 do
    python3 src/multiply.py --timer_repetitions 10000 --use-gpu --random-seed $seed
 done
