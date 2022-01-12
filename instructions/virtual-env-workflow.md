@@ -42,11 +42,13 @@ Let's see which Python version we have by default.
 python --version 
 ````
 
-That is the system-wide Python version and is at the time of writing pretty old (2.7.5). We can instead install whichever specific Python version we like. For example
+That is the system-wide Python version. At the time of writing the system wide Python defaults to `python2.7`, altough `python3` is also installed with version `3.6.8`. Using Conda we can instead install whichever specific Python version we like. For example
 
 ````
 conda install python==3.9.7
 ````
+
+`python` now defaults to the specified version, which you can check again with `python --version`. 
 
 We can install packages using `conda install` or `pip install`. `conda install` works for some stuff `pip install` doesn't and vice versa. Writing this tutorial I had a smoother experience with `pip`. 
 
