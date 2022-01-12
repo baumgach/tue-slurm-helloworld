@@ -93,7 +93,7 @@ As alluded to in the beginning, it may be a bit cumbersome to rebuild your entir
 So rather than baking the code into the container we can also run some code that lives outside of the container somewhere on slurm. We can for example run the identical file that lives in the `src` folder of this tutorial. 
 
 ````
-singularity exec --nv --bind /mnt/qb/baumgartner deeplearning.sif python3 src/multiply.py --timer_repetitions 10000 --no-gpu
+singularity exec --nv --bind /mnt/qb/baumgartner,`pwd` deeplearning.sif python3 src/multiply.py --timer_repetitions 10000 --no-gpu
 ````
 
 Not all directories are available from inside the container, but the following directories will be there:
