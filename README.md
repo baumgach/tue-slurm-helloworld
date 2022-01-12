@@ -131,6 +131,8 @@ python3 src/multiply.py --timer_repetitions 10000 --use-gpu
 conda deactivate
 ````
 
+The Python code depends on a file containing an integer mimicking a dependency on a training dataset. It constains a single integer specifying the size of the matrices to be multiplied by `multiply.py`. The file is located at `/mnt/qb/baumgartner/storagetest.txt` and it's permissions are set such that everybody can read it even if you are not a member of the MLMIA group. 
+
 You can submit this job using the following command 
 ````
 sbatch src/deploy-with-conda.sh
