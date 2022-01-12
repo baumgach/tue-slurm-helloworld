@@ -21,7 +21,7 @@ echo "---------------------------------\n"
 source $HOME/.bashrc
 
 # Next activate the conda environment 
-conda activate myenv.
+conda activate myenv
 
 # Run code with values specified in task array
 echo "-------- PYTHON OUTPUT ----------"
