@@ -1,8 +1,8 @@
 # Using Slurm with Singularity
 
-This example contains an example workflow using Singularity which includes instructions on how to build a singularity container and deploying it on the ML Cloud Slurm host.
+This example contains an example workflow using Singularity which includes instructions on how to build a Singularity container and deploying it on the ML Cloud Slurm host.
 
-In contrast, to the virtual environment workflow (i.e. Conda or virtualenv) the Singularity workflow offers more flexibility for setting up your environment, but it is also arguably a bit more involved and cumbersome to use. 
+In contrast, to the [virtual environment workflow](/instructions/virtual-env-workflow.md) (i.e. Conda or virtualenv) the Singularity workflow offers more flexibility for setting up your environment, but it is also arguably a bit more involved and cumbersome to use. 
 
 ## What is Singularity in a nutshell
 
@@ -16,9 +16,17 @@ As you will see the "pure" idea would be to package your code inside the contain
 
 If containers are new to you make sure to read about [containers in general](https://www.docker.com/resources/what-container) and [singularity containers](https://en.wikipedia.org/wiki/Singularity_(software)) in particular. 
 
+Singularity (like as Conda and virtualenv in the previous tutorial) is already pre-instatlled on Slurm. 
+
 ## Download code and build singularity container
 
-Make sure you are on the Slurm login node in the code directory for this tutorial as described in the [initial setup](/instructions/initial-setup.md). 
+Make sure you are on the Slurm login node, and download the code if you haven't done so yet in the minimal example or the conda workflow example:
+
+````
+cd $WORK
+git clone https://github.com/baumgach/tue-slurm-helloworld.git
+cd tue-slurm-helloworld 
+````
 
 As the first step, build singularity container
 
@@ -121,22 +129,21 @@ More info on how to manage Slurm jobs can be found [here](https://gitlab.mlcloud
 The following are general remarks not related to this tutorial.
 
 You have two options to run code on Slurm using a singularity container:
- 1. Copy it into the container locally and then move the whole container including code over to Slurm and run it there (as we do in this tutorial).
- 2. Do not copy your code into the container, but rather move it to your home directory on the remote Slurm host and access it from there (which we can do because singularity always automatically mounts the home directory no matter where we run it)
+ 1. Copy the code into the container locally and then move the whole container including code over to Slurm and run it there. For this you would need to install Singularity on your local machine as described below. 
+ 2. Do not copy your code into the container, but rather move it to your `$WORK` directory on the remote Slurm host and access it from there by mounting binding the code directory from Slurm into the container using the `--bind`opttion. 
 
- The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did.
+The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did. In fact this is what many ML companies do often in conjunction with Kubernetes, but usually using Docker rather than Singularity which is a bit more flexibile and faster to build. 
 
- However, using method (1) you will need to rebuild and copy your container to Slurm every time you change something. This, unfortunately, takes a long time because singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
+However, using method (1) you will need to rebuild and copy your container to Slurm every time you change something. This, unfortunately, takes a long time because Singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
 
 Method (2) seems the preferable one for actual research and development. You can have your code permanently in your Slurm directory and edit it locally by mounting your Slurm home locally using `sshfs` like above. Another option is to use a SSH extension for your IDE such as the "Remote -SSH" extension for Visual Studio Code.
 
-## Install singularity on your local machine (optional)
+## Install Singularity on your local machine (optional)
 
 You may want to install Singularity also on your local machine so you can develop your environment locally before copying it over to Slurm . 
 
 To install singularity on your local machine, follow the steps described [here](https://sylabs.io/guides/3.7/user-guide/quick_start.html).
 
-
 ## What now?
 
-Go back to the [Contents section](/README.md#contents) or learn about [interactive jobs and debugging](/instructions/interactive-jobs.md). 
+Go back to the [Contents section](/README.md#contents), learn about doing [parallel parameter sweeps](/instructions/parallel-jobs.md) using `sbatch`, or [interactive jobs and debugging](/instructions/interactive-jobs.md). 

@@ -1,4 +1,4 @@
-# Using Conda environments instead of Singularity
+# Setting up a Python environment using Conda or Virtualenv
 
 In this section, we will describe an example worklow for setting up a virtual python environment and then running the `multiply.py` code which relies on PyTorch and some other libraries. 
 
@@ -8,15 +8,19 @@ In the following we will describe a [Conda](https://docs.conda.io/en/latest/)-ba
 
 ## What is Conda in a Nutshell
 
-[Conda](https://docs.conda.io/en/latest/) is and environment manager for Python and other languages. It allows you to create and activate virtual environments in which you can install Python packages. The advantage is that the packages will not be installed globally on your machine, but only in this environment. This means you can use different versions of packages for different projects. 
+[Conda](https://docs.conda.io/en/latest/) is and environment manager for Python and other languages. It allows you to create and activate virtual environments in which you can install Python packages. The advantage is that the packages will not be installed globally on your machine, but only in this environment. This means you can use different versions of packages for different projects. Conda is already installed on the Slurm login nodes. 
 
-One drawback with respect to Singularity is that you can only influence the version of Python and Python packages, but not for example Cuda or the operating system. Usually, this isn't a problem, however. 
-
-Like Singularity, Conda is already installed on the Slurm login nodes. 
+One drawback with respect to the [Singularity](/instructions/singularity-workflow.md) workflow, which is described later, is that you can only influence the version of Python and Python packages, but not for example Cuda or the operating system. Usually, this isn't a problem, however. 
 
 ## Setting up a Conda environment 
 
-Again make sure you are on the Slurm login node.
+Make sure you are on the Slurm login node, and download the code if you haven't done so yet in the minimal example:
+
+````
+cd $WORK
+git clone https://github.com/baumgach/tue-slurm-helloworld.git
+cd tue-slurm-helloworld 
+````
 
 Make a Conda environment called `myenv` using
 
@@ -46,7 +50,7 @@ conda install python==3.9.7
 
 We can install packages using `conda install` or `pip install`. `conda install` works for some stuff `pip install` doesn't and vice versa. Writing this tutorial I had a smoother experience with `pip`. 
 
-So mimicking the dependencies in our `deeplearning.def` from the Singularity tutorial: 
+So in order to install our dependencies we can use:
 
 ````
 pip install numpy torch ipdb

@@ -97,7 +97,7 @@ ssh slurm-bm-63
 
 A requirement for this to work is that all the identity forwarding stuff in the [initial setup](/instructions/initial-setup.md) section of this tutorial were completed correctly. If it is not working for some reason try running `ssh-add` on your local machine. 
 
-Note also that you can only ssh onto nodes, on which you have jobs running. 
+Note also that you can only ssh onto nodes, on which you have jobs running and that you will only have access only to resources requested by that job (not all of the resources of that work node). 
 
 Once we ssh-ed to the work node (in this case node `slurm-bm-63`) we can for example check what the GPU is up to using
 ````
@@ -109,3 +109,7 @@ or we can see what is stored on the local temporary storage:
 ````
 ls /scratch_local
 ````
+
+## What now?
+
+Go back to the [Contents section](/README.md#contents) or learn about some [useful Slurm commands](/instructions/useful-commands.md). 
