@@ -106,7 +106,7 @@ The `deploy-with-singularity.sh` file contains instructions for your Slurm job. 
 
 We can submit the Slurm job using the following command
 ````
-sbatch deploy-with-singularity.sh
+sbatch src/deploy-with-singularity.sh
 ````
 
 This will run the job on Slurm as specified in `deploy.sh`. Note by the way, that the leading `#SBATCH` do not mean that those lines are commented out. This is just Slurm syntax.
