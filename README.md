@@ -28,6 +28,8 @@ This repository was compiled with members of the [MLMIA lab](https://www.mlmia-u
 
 You will notice that in many places, paths refer to locations only accessible to the MLMIA group such as `/mnt/qb/baumgartner`. However, there should be equivalent paths for members of all groups. For example, if you are part of the Berens group there would be an equivalent `/mnt/qb/berens` folder to which you *will* have access. 
 
+Generally, we believe that this introduction may also be useful for other ML Cloud users. 
+
 The instructions were written with Linux users in mind. Most of the instructions will translate to Mac, as well. If you use windows, you may have to resort to [Putty](https://www.putty.org/), although newer versions now also support `ssh` in the [Windows terminal](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh). 
 
 ## Minimal example
