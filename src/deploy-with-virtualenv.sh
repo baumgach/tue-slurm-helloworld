@@ -14,7 +14,7 @@
 # print info about current job
 echo "---------- JOB INFOS ------------"
 scontrol show job $SLURM_JOB_ID 
-echo "---------------------------------\n"
+echo -e "---------------------------------\n"
 
 # Activate virtualenv 
 source $HOME/env/bin/activate

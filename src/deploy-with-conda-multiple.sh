@@ -15,7 +15,7 @@
 # print info about current job
 echo "---------- JOB INFOS ------------"
 scontrol show job $SLURM_JOB_ID 
-echo "---------------------------------\n"
+echo -e "---------------------------------\n"
 
 # Due to a potential bug, we need to manually load our bash configurations first
 source $HOME/.bashrc

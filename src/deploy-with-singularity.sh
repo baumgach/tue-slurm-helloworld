@@ -14,7 +14,7 @@
 # print info about current job
 echo "---------- JOB INFOS ------------"
 scontrol show job $SLURM_JOB_ID 
-echo "---------------------------------\n"
+echo -e "---------------------------------\n"
 
 # Run singularity command 
 echo "-------- PYTHON OUTPUT ----------"
