@@ -4,7 +4,7 @@ This example contains an example workflow using Singularity which includes instr
 
 In contrast, to the virtual environment workflow (i.e. Conda or virtualenv) the Singularity workflow offers more flexibility for setting up your environment, but it is also arguably a bit more involved and cumbersome to use. 
 
-## What is Singularity in a nutshell
+## What is Singularity in a nutshell
 
 [Singularity](https://en.wikipedia.org/wiki/Singularity_(software)) is a type of container similar to more widely used [Docker](https://www.docker.com/resources/what-container). 
 
