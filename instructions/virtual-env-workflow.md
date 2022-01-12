@@ -16,13 +16,9 @@ Like Singularity, Conda is already installed on the Slurm login nodes.
 
 ## Setting up a Conda environment 
 
-Again make sure you are on the Slurm login node and move to the home directory (if you aren't already there)
+Again make sure you are on the Slurm login node.
 
-````
-cd 
-````
-
-Make a Conda environment called `myenv` 
+Make a Conda environment called `myenv` using
 
 ````
 conda create -n myenv 
@@ -104,6 +100,7 @@ The following describes the equivalent of the above in virtualenv.
 Setting up the environment
 
 ```` 
+cd $HOME  # go to home directory
 virtualenv -p python3 env 
 source env/bin/activate
 pip install --upgrade pip
@@ -118,6 +115,7 @@ deactivate
 Running the code 
 
 ````
+cd $WORK 
 sbatch src/deploy-with-virtualenv.sh
 ````
 
