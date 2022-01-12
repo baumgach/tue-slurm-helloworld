@@ -41,7 +41,13 @@ python src/multiply.py --timer_repetitions 10000 --use-gpu
 
 ## Debugging
 
-There is also a version of the `multiply.py` script, where I added a `ipdb` breakpoint around line 22: [src/multiply-debug.py](/src/multiply-debug.py). 
+This part will require a Python package called `ipdb`. If you followed the minimal example originally, it may not yet be installed. You can do so using 
+
+````
+pip install ipdb
+````
+
+There is a version of the `multiply.py` script, where I added a `ipdb` breakpoint around line 22: [src/multiply-debug.py](/src/multiply-debug.py). 
 
 We can also run that file instead:
 ````
