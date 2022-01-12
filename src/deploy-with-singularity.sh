@@ -11,9 +11,6 @@
 #SBATCH --mail-type=FAIL           # Type of email notification- BEGIN,END,FAIL,ALL
 #SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 
-# Make a folder for writing logs and error messages (STDOUT and STDERR)
-mkdir -p logs 
-
 # print info about current job
 scontrol show job $SLURM_JOB_ID 
 
