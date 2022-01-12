@@ -12,11 +12,11 @@
 #SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 #SBATCH --array=0,1,2,3,4   # array of cityscapes random seeds
 
-# print info about current job
-scontrol show job $SLURM_JOB_ID 
-
 # Make a folder for writing logs and error messages (STDOUT and STDERR)
 mkdir -p logs 
+
+# print info about current job
+scontrol show job $SLURM_JOB_ID 
 
 # Due to a potential bug, we need to manually load our bash configurations first
 source $HOME/.bashrc

@@ -11,11 +11,11 @@
 #SBATCH --mail-type=FAIL           # Type of email notification- BEGIN,END,FAIL,ALL
 #SBATCH --mail-user=<your-email>  # Email to which notifications will be sent
 
-# print info about current job
-scontrol show job $SLURM_JOB_ID 
-
 # Make a folder for writing logs and error messages (STDOUT and STDERR)
 mkdir -p logs 
+
+# print info about current job
+scontrol show job $SLURM_JOB_ID 
 
 # Run singularity command 
 singularity exec --nv --bind /mnt/qb/baumgartner,`pwd` deeplearning.sif \
