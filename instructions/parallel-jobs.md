@@ -51,7 +51,7 @@ sbatch src/deploy-with-conda-multiple.sh
 
 You can check with `squeue --me` that 5 jobs have in fact been started. 
 
-Learn more about the `--array` option in [this excellent article](https://slurm.schedmd.com/job_array.html).
+Learn more about the `--array` option in [this excellent section](https://slurm.schedmd.com/job_array.html) of the Slurm documentation.
 
 ## What now?
 

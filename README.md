@@ -154,6 +154,13 @@ cat logs/<logfilename>.out
 
 The file ending in `.out` contains the STDOUT, i.e. all print statement and things like that. The file ending in `.err` contains the STDERR, i.e. any error messages that were generated (hopefully none). 
 
-### What now?
+## Relevant links
+
+  * [Slurm documentation](https://slurm.schedmd.com/)
+  * [ML Cloud Wiki](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/home)
+  * [ML Cloud Wiki section on Slurm](https://gitlab.mlcloud.uni-tuebingen.de/doku/public/-/wikis/SLURM)
+  * [Internal MLMIA Wiki on Computation](https://wiki.mlmia-unitue.de/it-information:start) (only available to MLMIA members)
+
+## What now?
 
 This concludes the minimal example. If you want to learn more, you can have a look at the more detailed instructions described in the [Contents section](#contents) above. 
