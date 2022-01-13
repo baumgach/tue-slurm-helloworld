@@ -2,7 +2,7 @@
 
 In this section, we will describe an example worklow for setting up a virtual python environment and then running the `multiply.py` code which relies on PyTorch and some other libraries. 
 
-For many this may be a more accessible workflow compared to the [Singularity based approach](/instructions/singularity-workflow.md). However, for some cases it may be lacking in flexibility, especially if you need you need special libraries or a custum operating system for your experiments. 
+For many this may be a more accessible workflow compared to the [Singularity based approach](/instructions/singularity-workflow.md), which was originally recommended my the ML Cloud folks and is described in [the next section](/instructions/singularity-workflow.md). However, for some cases it may be lacking in flexibility, especially if you need you need special libraries or a custum operating system for your experiments. 
 
 In the following we will describe a [Conda](https://docs.conda.io/en/latest/)-based workflow in more detail and will then give a brief alternative workflow using [virtualenv](https://virtualenv.pypa.io/en/latest/). 
 
@@ -10,7 +10,7 @@ In the following we will describe a [Conda](https://docs.conda.io/en/latest/)-ba
 
 [Conda](https://docs.conda.io/en/latest/) is and environment manager for Python and other languages. It allows you to create and activate virtual environments in which you can install Python packages. The advantage is that the packages will not be installed globally on your machine, but only in this environment. This means you can use different versions of packages for different projects. Conda is already installed on the Slurm login nodes. 
 
-One drawback with respect to the [Singularity](/instructions/singularity-workflow.md) workflow, which is described later, is that you can only influence the version of Python and Python packages, but not for example Cuda or the operating system. Usually, this isn't a problem, however. 
+One drawback with respect to the [Singularity workflow](/instructions/singularity-workflow.md) is that you can only influence the version of Python and certain packages, but not over things like the operating system or packages not available through Conda. For example, using the Singularity method you can install any package or software available on Linux in your Singularity instance (e.g. using `apt`). Usually, this isn't a problem, however. 
 
 ## Setting up a Conda environment 
 
@@ -42,7 +42,7 @@ Let's see which Python version we have by default.
 python --version 
 ````
 
-That is the system-wide Python version. At the time of writing the system wide Python defaults to `python2.7`, altough `python3` is also installed with version `3.6.8`. Using Conda we can instead install whichever specific Python version we like. For example
+That is the system-wide Python version. At the time of writing the system wide Python defaults to `python2.7`, although `python3` is also installed with version `3.6.8`. Using Conda we can instead install whichever specific Python version we like. For example
 
 ````
 conda install python==3.9.7
@@ -95,7 +95,7 @@ cat logs/job_<job-id>.out
 
 ## Alternative workflow using virtualenv 
 
-The following describes the equivalent of the above in virtualenv. 
+The following describes the equivalent of the above in virtualenv. Virtualenv is yet a bit simpler than Conda, but also a bit less flexible. For example, it does not (easily) allow control over the specific Python version you can use. 
 
 Setting up the environment
 
