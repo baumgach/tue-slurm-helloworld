@@ -93,6 +93,12 @@ You can then look at the output log file and error file corresponding to your jo
 cat logs/job_<job-id>.out
 ````
 
+To deactivate the environment type 
+
+````
+conda deactivate
+````
+
 ## Alternative workflow using virtualenv 
 
 The following describes the equivalent of the above in virtualenv. Virtualenv is yet a bit simpler than Conda, but also a bit less flexible. For example, it does not (easily) allow control over the specific Python version you can use. 
