@@ -84,7 +84,7 @@ sbatch src/deploy-with-conda.sh
 The results will be written to the newly created `logs` directory which should have been created in your current working directory. You can list the files sorted by most recent and some useful extra information using 
 
 ````
-ls -ltrh 
+ls -ltrh logs
 ````
 
 You can then look at the output log file and error file corresponding to your job using the `cat` or `less` commands. For example:
