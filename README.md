@@ -16,7 +16,7 @@ Contents of this tutorial:
 
 In-depth instructions:
   * [Initial setup](/instructions/initial-setup.md): Some useful tricks for setting up your SSH connections and mounting Slurm volumes locally for working more efficiently. 
-  * [Virtual environment workflow](/instructions/virtual-env-workflow.md): A more in detailed explanation of the workflow based on virtual environments also used in the minimal example. 
+  * [Virtual environment workflow](/instructions/virtual-env-workflow.md): A more in detailed explanation of the workflow based on virtual environments also used in the minimal example and an alternative workflow using `virtualenv`, instead of `conda`. 
   * [Singularity workflow](/instructions/singularity-workflow.md): An alternative workflow using Singularity containers, which allows for more flexibility.
   * [Running parallel jobs](/instructions/parallel-jobs.md): A short introduction to executing a command for a list of parameters in parallel on multiple GPUs. 
   * [Interactive jobs and debugging](/instructions/interactive-jobs.md): How to run interactive jobs and how to debug Python code on Slurm. 
