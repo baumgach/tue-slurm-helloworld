@@ -59,11 +59,7 @@ sudo sshfs -o allow_other,IdentityFile=/home/$USER/.ssh/id_rsa <your-slurm-usern
 ````
 This is assuming you belong to the `baumgartner` group. Adjust accordingly if you belong to a different group. 
 
-Note: The folder only stays mounted as long as your internet connection doesn't drop. So, if you for instance reboot your machine, you need to re-execute the `sshfs` command. To automatically mount the folder upon rebooting, add the following line to the file `/etc/fstab` (you need to use root access for this).
-
-````
-<your-slurm-username>@134.2.168.52:/mnt/qb/work/baumgartner/<your-username> /mnt/qb/work/baumgartner/<your-username> fuse.sshfs allow_other,IdentityFile=/home/$USER/.ssh/id_rsa
-````
+Note: The folder only stays mounted as long as your internet connection doesn't drop. So, if you for instance reboot your machine, you need to re-execute the `sshfs` command. To automatically mount the folder upon rebooting you need to edit your `/etc/fstab` file, which is beyond the scope of this tutorial. 
 
 ### Trouble shooting
 
