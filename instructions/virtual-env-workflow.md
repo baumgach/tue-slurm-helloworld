@@ -2,7 +2,7 @@
 
 In this section, we will describe an example worklow for setting up a virtual python environment and then running the `multiply.py` code which relies on PyTorch and some other libraries. 
 
-For many this may be a more accessible workflow compared to the [Singularity based approach](/instructions/singularity-workflow.md), which was originally recommended my the ML Cloud folks and is described in [the next section](/instructions/singularity-workflow.md). However, for some cases it may be lacking in flexibility, especially if you need you need special libraries or a custum operating system for your experiments. 
+For many this may be a more accessible workflow compared to the [Singularity based approach](/instructions/singularity-workflow.md), which was originally recommended by the ML Cloud folks and is described in [the next section](/instructions/singularity-workflow.md). However, for some cases it may be lacking in flexibility, especially if you need you need special libraries or a custum operating system for your experiments. 
 
 In the following we will describe a [Conda](https://docs.conda.io/en/latest/)-based workflow in more detail and will then give a brief alternative workflow using [virtualenv](https://virtualenv.pypa.io/en/latest/). 
 
