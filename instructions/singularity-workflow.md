@@ -6,7 +6,7 @@ In contrast, to the [virtual environment workflow](/instructions/virtual-env-wor
 
 ## What is Singularity in a nutshell
 
-[Singularity](https://en.wikipedia.org/wiki/Singularity_(software)) is a type of container similar to more widely used [Docker](https://www.docker.com/resources/what-container). 
+[Singularity](https://en.wikipedia.org/wiki/Singularity_(software)) is a type of container similar to the more widely used [Docker](https://www.docker.com/resources/what-container). 
 
 It allows you to package everything you need to run your code into a file. It is almost like a virtual machine, in which you can log in, install whatever you want and store whatever data you want. In contrast to an actual virtual machine no part of your hardware is allocated specifically to run a singularity container. Rather it just takes whatever resources it needs like any other job on your system. 
 
@@ -16,7 +16,7 @@ As you will see the "pure" idea would be to package your code inside the contain
 
 If containers are new to you make sure to read about [containers in general](https://www.docker.com/resources/what-container) and [singularity containers](https://en.wikipedia.org/wiki/Singularity_(software)) in particular. 
 
-Singularity (like as Conda and virtualenv in the previous tutorial) is already pre-instatlled on Slurm. 
+Singularity (like Conda and virtualenv in the previous tutorial) is already pre-installed on Slurm. 
 
 ## Download code and build singularity container
 
@@ -130,9 +130,9 @@ The following are general remarks not related to this tutorial.
 
 You have two options to run code on Slurm using a singularity container:
  1. Copy the code into the container locally and then move the whole container including code over to Slurm and run it there. For this you would need to install Singularity on your local machine as described below. 
- 2. Do not copy your code into the container, but rather move it to your `$WORK` directory on the remote Slurm host and access it from there by mounting binding the code directory from Slurm into the container using the `--bind`opttion. 
+ 2. Do not copy your code into the container, but rather move it to your `$WORK` directory on the remote Slurm host and access it from there by mounting binding the code directory from Slurm into the container using the `--bind`option. 
 
-The advantage of (1) is that each container is (mostly) self-contained completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did. In fact this is what many ML companies do often in conjunction with Kubernetes, but usually using Docker rather than Singularity which is a bit more flexibile and faster to build. 
+The advantage of (1) is that each container is (mostly) self-contained and completely reproducible. (For this to be completely true, the data would also have to be baked into the container, which we could also do). If you give this container to someone else they can run it and get exactly the same result. You could also save containers with important experiments for later, so you can reproduce them or check what exactly you did. In fact this is what many ML companies do often in conjunction with Kubernetes, but usually using Docker rather than Singularity which is a bit more flexible and faster to build. 
 
 However, using method (1) you will need to rebuild and copy your container to Slurm every time you change something. This, unfortunately, takes a long time because Singularity (in contrast to docker) always rebuilds everything from scratch. So practically you will be able to develop much faster using method (2). This comes at the cost of the above mentioned reproducibility.
 
