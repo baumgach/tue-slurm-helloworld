@@ -1,14 +1,14 @@
 # Using Slurm with Conda or Virtualenv
 
-In this section, we will describe an example worklow for setting up a virtual python environment and then running the `multiply.py` code which relies on PyTorch and some other libraries. 
+In this section, we will describe an example workflow for setting up a virtual python environment and then running the `multiply.py` code which relies on PyTorch and some other libraries. 
 
-For many this may be a more accessible workflow compared to the [Singularity based approach](/instructions/singularity-workflow.md), which was originally recommended my the ML Cloud folks and is described in [the next section](/instructions/singularity-workflow.md). However, for some cases it may be lacking in flexibility, especially if you need you need special libraries or a custum operating system for your experiments. 
+For many this may be a more accessible workflow compared to the [Singularity based approach](/instructions/singularity-workflow.md), which was originally recommended by the ML Cloud folks and is described in [the next section](/instructions/singularity-workflow.md). However, for some cases it may be lacking in flexibility, especially if you need special libraries or a custom operating system for your experiments. 
 
 In the following we will describe a [Conda](https://docs.conda.io/en/latest/)-based workflow in more detail and will then give a brief alternative workflow using [virtualenv](https://virtualenv.pypa.io/en/latest/). 
 
 ## What is Conda in a Nutshell
 
-[Conda](https://docs.conda.io/en/latest/) is and environment manager for Python and other languages. It allows you to create and activate virtual environments in which you can install Python packages. The advantage is that the packages will not be installed globally on your machine, but only in this environment. This means you can use different versions of packages for different projects. Conda is already installed on the Slurm login nodes. 
+[Conda](https://docs.conda.io/en/latest/) is an environment manager for Python and other languages. It allows you to create and activate virtual environments in which you can install Python packages. The advantage is that the packages will not be installed globally on your machine, but only in this environment. This means you can use different versions of packages for different projects. Conda is already installed on the Slurm login nodes. 
 
 One drawback with respect to the [Singularity workflow](/instructions/singularity-workflow.md) is that you can only influence the version of Python and certain packages, but not over things like the operating system or packages not available through Conda. For example, using the Singularity method you can install any package or software available on Linux in your Singularity instance (e.g. using `apt`). Usually, this isn't a problem, however. 
 

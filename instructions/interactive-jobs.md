@@ -12,7 +12,7 @@ It is also possible to enter one of the work nodes directly, by using the follow
 srun --pty bash
 ````
 
-This will start and interactive job, login to an available work node and run the bash shell. However, we will still not have access to GPUs because we didn't request any.
+This will start an interactive job, login to an available work node and run the bash shell. However, we will still not have access to GPUs because we didn't request any.
 
 Requesting resources works exactly the same as in the deployment scripts, but we provide the variables as command line arguments (which incidentally you can also do for `sbatch` if you want to). For example:
 
