@@ -53,7 +53,7 @@ cd $WORK
 ````
 Download the contents (including code) of this tutorial into your current working directory using the following line:
 ````
-git clone https://github.com/baumgach/tue-slurm-helloworld.git
+git clone https://<your-slurm-username>@github.com/baumgach/tue-slurm-helloworld.git
 ````
 
 Change to code directory
